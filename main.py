@@ -39,8 +39,8 @@ class Forwarder:
         client = TelegramClient(phone, api_id, api_hash)
         client.start()
 
-        ch1 = int(input("Channel ID: "))
-        id1 = int(input("Message ID: "))
+        ch1 = int(input("Channel ID: -1002064776173 "))
+        id1 = int(input("Message ID: 46 "))
 
         async def get_message():
             message = await client.get_messages(ch1, ids=id1)
