@@ -108,6 +108,7 @@ if __name__ == "__main__":
     os.system("cls")
     print(f"{Fore.GREEN}―――― @Lawxsz Telegram Tool ――――")
     print(f"\n{Fore.YELLOW}1: Setup Account\n2: Start Forwarding\n3: Join to Groups")
+    print ("2")
     enter = input("2")
     if enter == "1":
         forwarder.setup()
