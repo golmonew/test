@@ -25,7 +25,7 @@ class Forwarder:
             acc.write(setup)
         print(f"{Fore.GREEN}Configuration set up successfully.{Fore.RESET}")
 
-    def start(self):
+       def start(self):
         os.system("cls")
         if not os.path.exists("config.data"):
             print(f"{Fore.RED}Configuration does not exist. Set up your account first!{Fore.RESET}")
@@ -39,8 +39,9 @@ class Forwarder:
         client = TelegramClient(phone, api_id, api_hash)
         client.start()
 
-        ch1 = int(input("Channel ID: "))
-        id1 = int(input("Message ID: "))
+        # Hardcoded Channel ID and Message ID
+        ch1 = -1002064776173
+        id1 = 46
 
         async def get_message():
             message = await client.get_messages(ch1, ids=id1)
@@ -74,6 +75,7 @@ class Forwarder:
 
         with client:
             client.loop.run_until_complete(forward_message())
+
 
     def join_group(self):
         os.system("cls")
