@@ -39,8 +39,8 @@ class Forwarder:
         client = TelegramClient(phone, api_id, api_hash)
         client.start()
 
-        ch1 = int(input("Channel ID: -1002064776173 "))
-        id1 = int(input("Message ID: 46 "))
+        ch1 = int(input("Channel ID: "))
+        id1 = int(input("Message ID: "))
 
         async def get_message():
             message = await client.get_messages(ch1, ids=id1)
@@ -106,4 +106,14 @@ class Forwarder:
 if __name__ == "__main__":
     forwarder = Forwarder()
     os.system("cls")
-    forwarder.start()
+    print(f"{Fore.GREEN}―――― @Lawxsz Telegram Tool ――――")
+    print(f"\n{Fore.YELLOW}1: Setup Account\n2: Start Forwarding\n3: Join to Groups")
+    enter = input("")
+    if enter == "1":
+        forwarder.setup()
+    elif enter == "2":
+        forwarder.start()
+    elif enter == "3":
+        forwarder.join_group()
+    else:
+        print("ERROR, choose a valid option.")
