@@ -78,6 +78,7 @@ class Forwarder:
 
 
 
+
     def join_group(self):
         os.system("cls")
         if not os.path.exists("config.data"):
