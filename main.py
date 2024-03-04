@@ -106,15 +106,4 @@ class Forwarder:
 if __name__ == "__main__":
     forwarder = Forwarder()
     os.system("cls")
-    print(f"{Fore.GREEN}―――― @Lawxsz Telegram Tool ――――")
-    print(f"\n{Fore.YELLOW}1: Setup Account\n2: Start Forwarding\n3: Join to Groups")
-    print ("2")
-    enter = input("2")
-    if enter == "1":
-        forwarder.setup()
-    elif enter == "2":
-        forwarder.start()
-    elif enter == "3":
-        forwarder.join_group()
-    else:
-        print("ERROR, choose a valid option.")
+    forwarder.start()
