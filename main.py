@@ -26,39 +26,39 @@ class Forwarder:
         print(f"{Fore.GREEN}Configuration set up successfully.{Fore.RESET}")
 
     def start(self):
-        os.system("cls")
-        if not os.path.exists("config.data"):
-                print(f"{Fore.RED}Configuration does not exist. Set up your account first!{Fore.RESET}")
-                return
+    os.system("cls")
+    if not os.path.exists("config.data"):
+        print(f"{Fore.RED}Configuration does not exist. Set up your account first!{Fore.RESET}")
+        return
 
-        file = configparser.RawConfigParser()
-        file.read('config.data')
-        api_id = file['cred']['id']
-        api_hash = file['cred']['hash']
-        phone = file['cred']['phone']
-        client = TelegramClient(phone, api_id, api_hash)
-        client.start()
+    file = configparser.RawConfigParser()
+    file.read('config.data')
+    api_id = file['cred']['id']
+    api_hash = file['cred']['hash']
+    phone = file['cred']['phone']
+    client = TelegramClient(phone, api_id, api_hash)
+    client.start()
 
-   
-    ch1 = -1002064776173  
-    id1 = 46  
+    # Provided Channel ID and Message ID
+    ch1 = -1002064776173  # Replace -1002064776173 with your channel ID
+    id1 = 46  # Replace 46 with your message ID
 
     async def get_message():
         message = await client.get_messages(ch1, ids=id1)
         return message
 
-    async def get_chat_id(group_link):
+    async def get_chat_id(client, group_link):  # Pass the client instance as an argument
         entity = await client.get_entity(group_link)
         chat_id = entity.id
         return chat_id
 
     with open("channels.txt", "r") as f:
         lines = f.readlines()
-        with open("channels_ids.txt", "w") as w:
-            for i in lines:
-                chat_id = client.loop.run_until_complete(get_chat_id(i.strip()))
-                print(chat_id)
-                w.write(str(chat_id) + "\n")
+    with open("channels_ids.txt", "w") as w:
+        for i in lines:
+            chat_id = client.loop.run_until_complete(get_chat_id(client, i.strip()))  # Pass client to get_chat_id
+            print(chat_id)
+            w.write(str(chat_id) + "\n")
 
     async def forward_message():
         while True:
@@ -75,6 +75,7 @@ class Forwarder:
 
     with client:
         client.loop.run_until_complete(forward_message())
+
 
 
 
