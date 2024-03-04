@@ -25,23 +25,23 @@ class Forwarder:
             acc.write(setup)
         print(f"{Fore.GREEN}Configuration set up successfully.{Fore.RESET}")
 
-       def start(self):
-    os.system("cls")
-    if not os.path.exists("config.data"):
-        print(f"{Fore.RED}Configuration does not exist. Set up your account first!{Fore.RESET}")
-        return
+    def start(self):
+        os.system("cls")
+        if not os.path.exists("config.data"):
+                print(f"{Fore.RED}Configuration does not exist. Set up your account first!{Fore.RESET}")
+                return
 
-    file = configparser.RawConfigParser()
-    file.read('config.data')
-    api_id = file['cred']['id']
-    api_hash = file['cred']['hash']
-    phone = file['cred']['phone']
-    client = TelegramClient(phone, api_id, api_hash)
-    client.start()
+        file = configparser.RawConfigParser()
+        file.read('config.data')
+        api_id = file['cred']['id']
+        api_hash = file['cred']['hash']
+        phone = file['cred']['phone']
+        client = TelegramClient(phone, api_id, api_hash)
+        client.start()
 
-    # Provided Channel ID and Message ID
-    ch1 = -1002064776173  # Replace -1002064776173 with your channel ID
-    id1 = 46  # Replace 46 with your message ID
+   
+    ch1 = -1002064776173  
+    id1 = 46  
 
     async def get_message():
         message = await client.get_messages(ch1, ids=id1)
